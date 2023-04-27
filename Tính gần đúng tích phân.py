@@ -1,3 +1,10 @@
+# AUTHOR
+# Name: Hoàng Mạnh Khiêm ( Skromnyy )
+# Github : https://github.com/hoangmanhkhiem/Giai_Tich_So/
+# Facebook : https://www.facebook.com/hoangmankhiem.IT
+# Contact : khiemhm04@gmail.com
+
+
 _Max = 100
 
 def F(x):

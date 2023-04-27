@@ -8,7 +8,7 @@ def input_data(x):
     data_x = np.loadtxt("inputX.txt")
     data_y = np.loadtxt("inputY.txt")
     check_input(data_x, data_y)
-    # x = float(input("Tinh dao ham tai X = "))
+    x = float(input("Tinh dao ham tai X = "))
     dx = float(data_x[1] - data_x[0])
     return [data_x, data_y, x, dx]
 
@@ -162,7 +162,7 @@ def main():
     x = 65
     test_forward_difference(x)
     test_backward_difference(x)
-    test_centered_difference_P2(x)
+    test_centered_difference(x)
 
 if __name__ == '__main__':
     main()

@@ -1,3 +1,10 @@
+# AUTHOR
+# Name: Hoàng Mạnh Khiêm ( Skromnyy )
+# Github : https://github.com/hoangmanhkhiem/Giai_Tich_So/
+# Facebook : https://www.facebook.com/hoangmankhiem.IT
+# Contact : khiemhm04@gmail.com
+
+
 from math import *
 import numpy as np
 import matplotlib.pyplot as plt
