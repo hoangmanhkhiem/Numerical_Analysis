@@ -18,10 +18,31 @@ def IterationMethod(x0,n):
     return x
 
 
+def Table_IterationMethod(x0,n):
+    C = []
+    U = ["x", "f(x)"]
+    x = x0
+    C.append(x)
+    while n:
+        C.append(f(x))
+        x = f(x)
+        C.append(x)
+        n = n - 1
+    print(U)
+    U = []
+    for i in C:
+        U.append(i)
+        if len(U)==2:
+            print(U)
+            U = []
+
+
 def main():
     x0 = float(input("Nhap gia tri x0: "))
     n = float(input("Nhap gia tri lan lap: "))
-    print("Gia tri nghiem x: ", IterationMethod(x0, n))
+    print("Bang gia tri")
+    Table_IterationMethod(x0, n)
+    print("\nGia tri nghiem x: ", IterationMethod(x0, n))
 
 if __name__ == '__main__':
     main()

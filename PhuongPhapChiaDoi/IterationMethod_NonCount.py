@@ -19,10 +19,33 @@ def IterationMethod(x0,e):
     return y
 
 
+def Table_IterationMethod(x0,e):
+    C = []
+    U = ["x", "f(x)"]
+    x = x0
+    C.append(x)
+    y = f(x)
+    C.append(y)
+    while abs(x - y) > e:
+        x = y
+        C.append(x)
+        y = f(x)
+        C.append(y)
+    print(U)
+    U = []
+    for i in C:
+        U.append(i)
+        if len(U)==2:
+            print(U)
+            U = []
+
+
 def main():
     x0 = float(input("Nhap gia tri x0: "))
     e = float(input("Nhap gia tri sai so: "))
-    print("Gia tri nghiem x: ", IterationMethod(x0, e))
+    print("Bang gia tri")
+    Table_IterationMethod(x0, e)
+    print("\nGia tri nghiem x: ", IterationMethod(x0, e))
 
 if __name__ == '__main__':
     main()

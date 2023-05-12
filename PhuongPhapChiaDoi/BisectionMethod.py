@@ -46,9 +46,9 @@ def main():
     a = float(input('Nhap gia tri a: '))
     b = float(input('Nhap gia tri b: '))
     eps = float(input('Nhap gia tri sai so: '))
-    print("Gia tri nghiem x: ",BisectionMethod(a,b,eps))
     print("Bang gia tri")
     Table_BisectionMethod(a, b, eps)
+    print("\nGia tri nghiem x: ",BisectionMethod(a,b,eps))
 
 if __name__ == '__main__':
     main()
