@@ -19,6 +19,7 @@ def BisectionMethod(a,b,e):
             b = x
     return x
 
+
 def Table_BisectionMethod(a,b,e):
     C =[]
     C.append(b)
