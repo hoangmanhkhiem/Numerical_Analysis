@@ -13,7 +13,7 @@ def f(x):
 def IterationMethod(x0,e):
     x = x0
     y = f(x)
-    while abs(x-y)>e:
+    while abs(x-y) >= e:
         x = y
         y = f(x)
     return y

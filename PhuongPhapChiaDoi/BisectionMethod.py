@@ -8,7 +8,7 @@
 import math
 
 def f(x):
-    return x-x**(1/3)-2
+    return x**3-x-1
 
 def BisectionMethod(a,b,e):
     while(abs(b-a)>e):
@@ -24,7 +24,7 @@ def Table_BisectionMethod(a,b,e):
     C =[]
     C.append(b)
     C.append(a)
-    while (abs(b - a) > e):
+    while (abs(b - a) >= e):
         x = (a + b) / 2
         C.append(x)
         C.append(f(x))

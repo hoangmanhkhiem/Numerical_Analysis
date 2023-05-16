@@ -12,10 +12,12 @@ def f(x):
 
 def IterationMethod(x0,n):
     x = x0
+    y = f(x)
     while n:
-        x = f(x)
+        x = y
+        y = f(x)
         n = n - 1
-    return x
+    return y
 
 
 def Table_IterationMethod(x0,n):
@@ -23,11 +25,14 @@ def Table_IterationMethod(x0,n):
     U = ["x", "f(x)"]
     x = x0
     C.append(x)
+    y = f(x)
+    C.append(y)
     while n:
-        C.append(f(x))
-        x = f(x)
+        x = y
         C.append(x)
-        n = n - 1
+        y = f(x)
+        C.append(y)
+        n = n -1
     print(U)
     U = []
     for i in C:
@@ -39,7 +44,7 @@ def Table_IterationMethod(x0,n):
 
 def main():
     x0 = float(input("Nhap gia tri x0: "))
-    n = float(input("Nhap gia tri lan lap: "))
+    n = int(input("Nhap so lan lap"))
     print("Bang gia tri")
     Table_IterationMethod(x0, n)
     print("\nGia tri nghiem x: ", IterationMethod(x0, n))

@@ -8,7 +8,7 @@
 import math
 
 def f(x):
-    return x-x**(1/3)-2
+    return x**3 - x - 1
 
 def BisectionMethod(a,b,e):
     e = e + 1
@@ -49,10 +49,10 @@ def Table_BisectionMethod(a,b,e):
 def main():
     a = float(input('Nhap gia tri a: '))
     b = float(input('Nhap gia tri b: '))
-    eps = float(input('Nhap so lan chia doi: '))
+    n = float(input('Nhap so lan chia doi: '))
     print("Bang gia tri")
-    Table_BisectionMethod(a, b, eps)
-    print("\nGia tri nghiem x: ", BisectionMethod(a, b, eps))
+    Table_BisectionMethod(a, b, n)
+    print("\nGia tri nghiem x: ", BisectionMethod(a, b, n))
 
 if __name__ == '__main__':
     main()
