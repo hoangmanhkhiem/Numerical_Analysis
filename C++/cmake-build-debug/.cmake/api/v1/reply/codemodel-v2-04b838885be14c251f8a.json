@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "E:/GTS/cmake-build-debug",
-		"source" : "E:/GTS"
+		"build" : "D:/Github/Numerical_Analysis/C++/cmake-build-debug",
+		"source" : "D:/Github/Numerical_Analysis/C++"
 	},
 	"version" : 
 	{

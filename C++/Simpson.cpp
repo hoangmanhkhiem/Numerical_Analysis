@@ -1,3 +1,5 @@
+//Author Skromnyy
+//Github: https://github.com/hoangmanhkhiem
 #include<bits/stdc++.h>
 #define f(x) (x*x*exp(x))/(5*x*x+10)
 using namespace std;

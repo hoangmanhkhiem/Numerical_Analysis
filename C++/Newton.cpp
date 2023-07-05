@@ -1,3 +1,5 @@
+//Author Skromnyy
+//Github: https://github.com/hoangmanhkhiem
 #include <iostream>
 using namespace std;
 

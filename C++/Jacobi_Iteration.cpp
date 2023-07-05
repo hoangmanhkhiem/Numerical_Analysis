@@ -1,3 +1,5 @@
+//Author Skromnyy
+//Github: https://github.com/hoangmanhkhiem
 #include<bits/stdc++.h>
 using namespace std;
 #define f1(x,y,z)  (1-0.5*y-0.3*z)/(-6)

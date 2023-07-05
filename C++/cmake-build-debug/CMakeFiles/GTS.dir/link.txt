@@ -1,0 +1,3 @@
+"D:\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\GTS.dir/objects.a
+"D:\CLion 2023.1.1\bin\mingw\bin\ar.exe" qc CMakeFiles\GTS.dir/objects.a @CMakeFiles\GTS.dir\objects1
+"D:\CLion 2023.1.1\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\GTS.dir/objects.a -Wl,--no-whole-archive -o GTS.exe -Wl,--out-implib,libGTS.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\GTS.dir\linkLibs.rsp

@@ -1,3 +1,5 @@
+//Author Skromnyy
+//Github: https://github.com/hoangmanhkhiem
 #include <iostream>
 #include <cmath>
 using namespace std;

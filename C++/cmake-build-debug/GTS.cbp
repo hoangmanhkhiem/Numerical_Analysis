@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="GTS"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/Github/Numerical_Analysis/C++/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GTS">
+				<Option output="D:/Github/Numerical_Analysis/C++/cmake-build-debug/GTS.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Github/Numerical_Analysis/C++/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTS"/>
+					<CompileFile command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GTS/fast">
+				<Option output="D:/Github/Numerical_Analysis/C++/cmake-build-debug/GTS.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Github/Numerical_Analysis/C++/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2023.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTS/fast"/>
+					<CompileFile command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/Github/Numerical_Analysis/C++/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/Github/Numerical_Analysis/C++/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/Github/Numerical_Analysis/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Chiadoi.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Daycung.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Gauss_Jordan.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Gauss_Seidei.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/HinhThang.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Jacobi_Iteration.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Lagrange.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Newton.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/PPLap.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Simpson.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/Tieptuyen.cpp">
+			<Option target="GTS"/>
+		</Unit>
+		<Unit filename="D:/Github/Numerical_Analysis/C++/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

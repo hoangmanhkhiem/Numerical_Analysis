@@ -1,3 +1,5 @@
+//Author Skromnyy
+//Github: https://github.com/hoangmanhkhiem
 #include<bits/stdc++.h>
 using namespace std;
 #define f(x) (x*x/(4*x*x+11))*atan(x)
