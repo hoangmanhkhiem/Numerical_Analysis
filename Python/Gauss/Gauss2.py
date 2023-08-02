@@ -17,36 +17,25 @@ def gauss2horner(x, y, value):
     h = x[1] - x[0]  # bước nhảy
     # tính bảng sai phân
     table = bangsaiphan(x, y)
-    # đưa các giá trị sai phân sẽ chọn vào một list
-    list_sai_phan = []
-
+    # print("Số mốc lẻ")
+    poly = [0]  # phần tích đầu tiên là bậc 0 với giá trị là 0
+    ans = [table[0][n // 2]]
+    fact = 1
+    list_sai_phan = [table[0][n // 2]]
     # áp dụng công thức
-    if (n % 2 == 1):
-        # print("Số mốc lẻ")
-        poly = [0]  # phần tích đầu tiên là bậc 0 với giá trị là 0
-        ans = [table[0][int(n / 2)]]  # biến kết quả ans lần lượt là các hệ số của đa thức nội suy
-        fact = 1
-        list_sai_phan.append(table[0][int(n / 2)])
-        for i in range(1, n):
-            fact = fact * i
-            poly = mulHorner(poly, i, 2)
+    for i in range(1, n):
+        fact = fact * i
+        poly = mulHorner(poly, i, 2)
+            # áp dụng công thức
+        if (n % 2 == 1):
             ans = sumHorner(ans, mulConst(poly, table[i][int((n - i - 1) / 2)] / fact))
             list_sai_phan.append(table[i][int((n - i - 1) / 2)])  # lấy giá trị sai phân
 
-        result = horner(ans, (value - x[int(n / 2)]) / h)
-    else:
-        # print("Số mốc chẵn")
-        poly = [0]
-        ans = [table[0][int(n / 2)]]
-        fact = 1
-        list_sai_phan.append(table[0][int(n / 2)])
-        for i in range(1, n):
-            fact = fact * i
-            poly = mulHorner(poly, i, 2)
+        else:
             ans = sumHorner(ans, mulConst(poly, table[i][int((n - i) / 2)] / fact))
             list_sai_phan.append(table[i][int((n - i) / 2)])
 
-        result = horner(ans, (value - x[int(n / 2)]) / h)
+    result = horner(ans, (value - x[n // 2]) / h)
     print('Các sai phân đã chọn theo Gauss 2:', list_sai_phan)
     return ans, result
 
@@ -89,15 +78,9 @@ def main():
     predict = []
     # đổi sang biến t
     t = []
-    if (n % 2 == 1):
-        for ele_x in x:
-            ele_t = (ele_x - x[int(n / 2)]) / (x[1] - x[0])
-            t.append(ele_t)
-    else:
-        for ele_x in x:
-            ele_t = (ele_x - x[int(n / 2)]) / (x[1] - x[0])
-            t.append(ele_t)
-
+    for ele_x in x:
+        ele_t = (ele_x - x[n // 2]) / (x[1] - x[0])
+        t.append(ele_t)
     for ele_t in t:
         ele_y = horner(ans[0], ele_t)
         predict.append(ele_y)
@@ -117,7 +100,7 @@ def main():
     # đổi biến x sang biến t:
     t_plot = []
     for ele_x in x_plot:
-        ele_t = (ele_x - x[int(n / 2)]) / (x[1] - x[0])
+        ele_t = (ele_x - x[n // 2]) / (x[1] - x[0])
         t_plot.append(ele_t)
     # tính y_plot tương ứng với t_plot
     y_plot = []

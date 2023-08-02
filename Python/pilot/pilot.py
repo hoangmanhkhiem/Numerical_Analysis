@@ -7,7 +7,7 @@ import sys
 def Input():
     x, y = [], []
     with open('input.txt','r+') as f: # đọc file input
-        for line in f.readlines(): # duyệt từng hàng trong file
+        for line in f:
             if float(line.split()[0]) not in x:
                 x.append(float(line.split()[0]))
                 y.append(float(line.split()[1]))

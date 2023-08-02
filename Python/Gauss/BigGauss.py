@@ -35,15 +35,13 @@ def gaussbig(x, y, value, num):
         return 'Không đủ mốc'
     elif (so_moc_x1 >= num) and (so_moc_x2 < num):
         x_index = x[index]
-    elif (so_moc_x1 < num) and (so_moc_x2 >= num):
-        index = index + 1
+    elif so_moc_x1 < num:
+        index += 1
         x_index = x[index]
     else:
-        if abs(x[index] - value) <= abs(x[index + 1] - value):
-            x_index = x[index]
-        else:
-            index = index + 1
-            x_index = x[index]
+        if abs(x[index] - value) > abs(x[index + 1] - value):
+            index += 1
+        x_index = x[index]
     print('Mốc được chọn: x =', x_index)
 
     # Lấy số mốc tương ứng với num
@@ -51,25 +49,17 @@ def gaussbig(x, y, value, num):
         x_new = x[index - int(num / 2):index + int(num / 2) + 1]
         y_new = y[index - int(num / 2):index + int(num / 2) + 1]
 
-        table = bangsaiphan(x_new, y_new)
-        print('Bảng sai phân:')
-        for i in range(num):
-            print(x_new[i], end="\t")
-            for j in range(num - i):
-                print(table[j][i], end="\t")
-            print("")
     else:
         x_new = x[index - int(num / 2) + 1:index + int(num / 2) + 1]
         y_new = y[index - int(num / 2) + 1:index + int(num / 2) + 1]
 
-        table = bangsaiphan(x_new, y_new)
-        print('Bảng sai phân:')
-        for i in range(num):
-            print(x_new[i], end="\t")
-            for j in range(num - i):
-                print(table[j][i], end="\t")
-            print("")
-
+    table = bangsaiphan(x_new, y_new)
+    print('Bảng sai phân:')
+    for i in range(num):
+        print(x_new[i], end="\t")
+        for j in range(num - i):
+            print(table[j][i], end="\t")
+        print("")
     ans1 = gauss1horner(x_new, y_new, value)
     ans2 = gauss2horner(x_new, y_new, value)
     ans3 = display_poly_gauss_1(ans1[0], x_new)

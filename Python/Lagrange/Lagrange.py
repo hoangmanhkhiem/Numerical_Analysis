@@ -10,23 +10,17 @@ import pandas as pd
 
 
 def doc_input(ten_file):
-    # tra ve gia tri cua x va y tu file input.txt
-    # doc file input.txt
-    inp = open(ten_file, "r")
-    # doc du lieu cua x va y
-    x = inp.readline()
-    y = inp.readline()
-    # xu ly du lieu cua x va y
-    x = x.strip().split()
-    x = np.array(x, dtype=float)
-    if (y == ""):
+    with open(ten_file, "r") as inp:
+        # doc du lieu cua x va y
+        x = inp.readline()
+        y = inp.readline()
+        # xu ly du lieu cua x va y
+        x = x.strip().split()
+        x = np.array(x, dtype=float)
+        if y != "":
+            y = y.strip().split()
         # y = f(x)
         y = np.array(y, dtype=float)
-        inp.close()
-    else:
-        y = y.strip().split()
-        y = np.array(y, dtype=float)
-        inp.close()
     return x, y
 
 
@@ -43,8 +37,7 @@ def hoocnerNhan(x):
 
 def hoocnerChia(a, value):
     b = [a[0]]
-    for i in range(1, len(a)):
-        b.append(a[i] + b[i - 1] * value)
+    b.extend(a[i] + b[i - 1] * value for i in range(1, len(a)))
     return b
 
 

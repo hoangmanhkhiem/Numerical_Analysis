@@ -36,7 +36,7 @@ def prt(y, n):
 
 def main():
     n = 6
-    y = [[0 for i in range(10)] for j in range(10)]
+    y = [[0 for _ in range(10)] for _ in range(10)]
 
     x = [11, 13, 14, 18, 19, 21]
 

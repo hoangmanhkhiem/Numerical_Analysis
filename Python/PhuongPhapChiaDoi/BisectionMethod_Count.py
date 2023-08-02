@@ -22,9 +22,7 @@ def BisectionMethod(a,b,e):
     return x
 
 def Table_BisectionMethod(a,b,e):
-    C =[]
-    C.append(b)
-    C.append(a)
+    C = [b, a]
     e = e + 1
     while (e):
         x = (a + b) / 2

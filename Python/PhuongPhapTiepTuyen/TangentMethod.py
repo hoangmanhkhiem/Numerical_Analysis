@@ -12,10 +12,7 @@ def f(x):
     return x**4+2*x*x*x-x-1
 
 def Tangent_Method(a, b, e):
-    if f(a) > 0:
-        f_u = a
-    else:
-        f_u = b
+    f_u = a if f(a) > 0 else b
     x = f_u - f(f_u) * e / (f(f_u+e) - f(f_u))
     while abs(x-f_u) > e:
         f_u = x

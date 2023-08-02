@@ -16,7 +16,7 @@ np.set_printoptions(suppress=True, linewidth=np.inf, precision=5)#chỉnh số c
 def Input():
     x, y = [], []
     with open('input.txt','r+') as f: # đọc file input
-        for line in f.readlines(): # duyệt từng hàng trong file
+        for line in f:
             if float(line.split()[0]) not in x:
                 x.append(float(line.split()[0]))
                 y.append(float(line.split()[1]))
@@ -118,12 +118,12 @@ def main():
     print("Hệ số đa thức nội suy Newton là: (bắt đầu từ hệ số tự do)")
     print(f)
     print("Giá trị cần tính tại", x0, " là:", value)
-        
+
     plot(x, y, f, n)
     k = int(input("Nhập số lượng thêm mốc nội suy: "))
     if k <= 0:
         sys.exit()
-    for i in range(k):
+    for _ in range(k):
         xt, yt = input("Nhập mốc và giá trị nội suy: ").split()
         if float(xt) not in x:
             n += 1

@@ -9,31 +9,21 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-def doc_input (ten_file):
-    #tra ve gia tri cua x va y tu file input.txt
-    # doc file input.txt
-    inp = open(ten_file, "r")
-    # doc du lieu cua x va y
-    x = inp.readline()
-    y = inp.readline()
-    # xu ly du lieu cua x va y
-    x = x.strip().split()
-    x = np.array(x, dtype=float)
-    if (y == ""):
-        y = f(x)
+def doc_input(ten_file):
+    with open(ten_file, "r") as inp:
+        # doc du lieu cua x va y
+        x = inp.readline()
+        y = inp.readline()
+        # xu ly du lieu cua x va y
+        x = x.strip().split()
+        x = np.array(x, dtype=float)
+        y = f(x) if (y == "") else y.strip().split()
         y = np.array(y, dtype=float)
-        inp.close()
-    else:
-        y = y.strip().split()
-        y = np.array(y, dtype=float)
-        inp.close()
     return x, y
 
 def hoocnerChia(a, value):
-    b = []
-    b.append(a[0])
-    for i in range(1, len(a)):
-        b.append(b[i - 1] * value + a[i])
+    b = [a[0]]
+    b.extend(b[i - 1] * value + a[i] for i in range(1, len(a)))
     return b
 
 def hoocnerNhanBosung(coeffPolyTich, t):
@@ -122,13 +112,8 @@ def kiemTraMoc(dataX, x0):
 def checkSoMoc(dataX, soMoc, x0):
     h = dataX[1] - dataX[0]
     m = round((x0 - dataX[0]) / h)
-    if m <= len(dataX) / 2:
-        n = 2 * m + 1
-    else:
-        n = 2 * (len(dataX) - m) + 1
-    if n > len(dataX):
-        n = len(dataX)
-
+    n = 2 * m + 1 if m <= len(dataX) / 2 else 2 * (len(dataX) - m) + 1
+    n = min(n, len(dataX))
     # check xem so moc chon co hop le hay khong
     if soMoc > n or soMoc <= 0 or soMoc % 2 == 0:
         print("so luong moc lua chon la khong hop le")
@@ -142,14 +127,9 @@ def sortGauss1(dataX, dataY, x0, soMoc):
     y = []
     m = round((x0 - dataX[0]) / (dataX[1] - dataX[0]))
     for i in range(soMoc):
-        if i % 2 == 1:
-            k = int((i + 1) / 2)
-            x.append(dataX[m + k])
-            y.append(dataY[m + k])
-        else:
-            k = int(-(i + 1) / 2)
-            x.append(dataX[m + k])
-            y.append(dataY[m + k])
+        k = int((i + 1) / 2) if i % 2 == 1 else int(-(i + 1) / 2)
+        y.append(dataY[m + k])
+        x.append(dataX[m + k])
     return x, y
 
 
@@ -158,14 +138,9 @@ def sortGauss2(dataX, dataY, x0, soMoc):
     y = []
     m = round((x0 - dataX[0]) / (dataX[1] - dataX[0]))
     for i in range(soMoc):
-        if i % 2 == 1:
-            k = int(-(i + 1) / 2)
-            x.append(dataX[m + k])
-            y.append(dataY[m + k])
-        else:
-            k = int((i + 1) / 2)
-            x.append(dataX[m + k])
-            y.append(dataY[m + k])
+        k = int(-(i + 1) / 2) if i % 2 == 1 else int((i + 1) / 2)
+        y.append(dataY[m + k])
+        x.append(dataX[m + k])
     return x, y
 
 
@@ -182,10 +157,7 @@ def main(choose, dataX, dataY, x0, soMoc):
             x, y = sortGauss1(dataX, dataY, x0, soMoc)
             print("Các mốc đã sử dụng: \nx: {0}\ny: {1}".format(x, y))
             for i in range(soMoc):
-                if i % 2 == 1:
-                    k = int((i + 1) / 2)
-                else:
-                    k = int(-(i + 1) / 2)
+                k = int((i + 1) / 2) if i % 2 == 1 else int(-(i + 1) / 2)
                 heSodaThuc, coeffTich, f_0, f_1, giaiThua_k = noiSuyTrungTamGauss(heSodaThuc, coeffTich, f_0, f_1, k,
                                                                                   x0, x[i], y[i], giaiThua_k, choose)
 
@@ -195,23 +167,20 @@ def main(choose, dataX, dataY, x0, soMoc):
                     "\nDa thuc moi sau khi them moc noi suy: (x[{0}] = {1},  y[{0}] = {2}): ".format(m + k, x[i], y[i]))
                 out.write("\nTap cac moc noi suy: \t")
                 for j in range(i + 1):
-                    out.write("({}, {}); \t".format(x[j], y[j]))
-                out.write("\nDa thuc bac {}: \nP(t) =: ".format(i))
+                    out.write(f"({x[j]}, {y[j]}); \t")
+                out.write(f"\nDa thuc bac {i}: \nP(t) =: ")
                 for j in range(len(heSodaThuc)):
-                    out.write("{} * x^{} \t + \t".format(heSodaThuc[j], len(heSodaThuc) - 1 - j))
+                    out.write(f"{heSodaThuc[j]} * x^{len(heSodaThuc) - 1 - j} \t + \t")
                 out.write("\n\nThu lai\n")
                 for j in range(i + 1):
-                    out.writelines("\nTai du lieu x = {}".format(x[j]))
+                    out.writelines(f"\nTai du lieu x = {x[j]}")
                     a = hoocnerChia(heSodaThuc, (x[j] - x[0]) / h)
-                    out.writelines("\nPn(x) - y = {}".format(a[len(heSodaThuc) - 1] - y[j]))
+                    out.writelines(f"\nPn(x) - y = {a[len(heSodaThuc) - 1] - y[j]}")
         elif choose == "Gauss2":
             x, y = sortGauss2(dataX, dataY, x0, soMoc)
             print("Các mốc đã sử dụng: \nx: {0}\ny: {1}".format(x, y))
             for i in range(soMoc):
-                if i % 2 == 1:
-                    k = int(-(i + 1) / 2)
-                else:
-                    k = int((i + 1) / 2)
+                k = int(-(i + 1) / 2) if i % 2 == 1 else int((i + 1) / 2)
                 heSodaThuc, coeffTich, f_0, f_1, giaiThua_k = noiSuyTrungTamGauss(heSodaThuc, coeffTich, f_0, f_1, k,
                                                                                   x0, x[i], y[i], giaiThua_k, choose)
 
@@ -221,15 +190,15 @@ def main(choose, dataX, dataY, x0, soMoc):
                     "\nDa thuc moi sau khi them moc noi suy: (x[{0}] = {1},  y[{0}] = {2}): ".format(m + k, x[i], y[i]))
                 out.write("\nTap cac moc noi suy: \t")
                 for j in range(i + 1):
-                    out.write("({}, {}); \t".format(x[j], y[j]))
-                out.write("\nDa thuc bac {}: \nP(t) =: ".format(i))
+                    out.write(f"({x[j]}, {y[j]}); \t")
+                out.write(f"\nDa thuc bac {i}: \nP(t) =: ")
                 for j in range(len(heSodaThuc)):
-                    out.write("{} * x^{} \t + \t".format(heSodaThuc[j], len(heSodaThuc) - 1 - j))
+                    out.write(f"{heSodaThuc[j]} * x^{len(heSodaThuc) - 1 - j} \t + \t")
                 out.write("\n\nThu lai\n")
                 for j in range(i + 1):
-                    out.writelines("\nTai du lieu x = {}".format(x[j]))
+                    out.writelines(f"\nTai du lieu x = {x[j]}")
                     a = hoocnerChia(heSodaThuc, (x[j] - x[0]) / h)
-                    out.writelines("\nPn(x) - y = {}".format(a[len(heSodaThuc) - 1] - y[j]))
+                    out.writelines(f"\nPn(x) - y = {a[len(heSodaThuc) - 1] - y[j]}")
     return heSodaThuc, coeffTich, f_0, f_1, giaiThua_k
 
 def main():

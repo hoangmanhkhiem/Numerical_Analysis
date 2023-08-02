@@ -42,18 +42,11 @@ def max_f(a, b, f):
 X1 = []
 Y1 = []
 def TTPHinhThang(a,b,n):
-    # if n == 0:
-    #     n = _Max
-    ans = 0
     h = (b-a)/n
     for i in range (n+1):
         X1.append(a + i * h)
         Y1.append(F(a + i * h))
-    for i in range(n+1):
-        if i == 0 or i == n:
-            ans += Y1[i]
-        else:
-            ans += 2 * Y1[i]
+    ans = sum(Y1[i] if i in [0, n] else 2 * Y1[i] for i in range(n+1))
     return h / 2 * ans
 
 
@@ -61,21 +54,21 @@ X2 = []
 Y2 = []
 #PP Simpson
 def TTPSimpson(a,b,m):
-  # if m == 0:
-  #     m = _Max
-  ans = 0
-  h = (b - a) / m
-  for i in range (m+1):
-      X2.append(a+ i * h)
-      Y2.append(F(a + i * h))
-  for i in range(m+1):
-       if i == 0 or i == m:
-          ans += Y2[i]
-       elif i % 2 == 1:
-          ans += 4 * Y2[i]
-       else:
-          ans += 2 * Y2[i]
-  return h / 3 * ans
+    # if m == 0:
+    #     m = _Max
+    ans = 0
+    h = (b - a) / m
+    for i in range (m+1):
+        X2.append(a+ i * h)
+        Y2.append(F(a + i * h))
+    for i in range(m+1):
+        if i in [0, m]:
+            ans += Y2[i]
+        elif i % 2 == 1:
+           ans += 4 * Y2[i]
+        else:
+            ans += 2 * Y2[i]
+    return h / 3 * ans
 
 def main():
     a = float(input('Nhap gia tri can duoi: '))

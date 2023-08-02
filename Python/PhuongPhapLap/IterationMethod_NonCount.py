@@ -20,10 +20,9 @@ def IterationMethod(x0,e):
 
 
 def Table_IterationMethod(x0,e):
-    C = []
     U = ["x", "f(x)"]
     x = x0
-    C.append(x)
+    C = [x]
     y = f(x)
     C.append(y)
     while abs(x - y) > e:

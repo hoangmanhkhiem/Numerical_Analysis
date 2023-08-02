@@ -21,9 +21,7 @@ def BisectionMethod(a,b,e):
 
 
 def Table_BisectionMethod(a,b,e):
-    C =[]
-    C.append(b)
-    C.append(a)
+    C = [b, a]
     while (abs(b - a) >= e):
         x = (a + b) / 2
         C.append(x)

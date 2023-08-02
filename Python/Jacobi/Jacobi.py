@@ -11,18 +11,15 @@
 
 A = []
 b = []
-f1 = open("input.txt", "r")
-data = f1.readlines()
-n = sum(1 for _ in data)
-f1.close()
+with open("input.txt", "r") as f1:
+        data = f1.readlines()
+        n = sum(1 for _ in data)
 for s in data:
         row = s.strip().split(' ')
         row1 = [float(i) for i in row]
-        row2 = []
-        for i in range(len(row1) - 1):
-            row2.append(row1[i])
+        row2 = [row1[i] for i in range(len(row1) - 1)]
         A.append(row2)
-        b.append(row1[len(row1) - 1])
+        b.append(row1[-1])
 print("A = ", A)
 print("b = ", b)
 # sai số e
@@ -32,40 +29,30 @@ eps = e = 10e-10
 # Gói A
 # kiểm tra điều kiện chéo trội của A
 def kt(A):
-    m = []
-    m = [sum(abs(j) for j in r) for r in A]
-    if all(2 * abs(A[i][i]) > m[i] for i in range(n)):
-        return 0
-    else:
-        m = [sum([abs(x[i]) for x in A]) for i in range(len(A[0]))]
-        if all(2 * abs(A[j][j]) > m[j] for j in range(n)):
-            return 1
-        else:
-            return -1
+        m = []
+        m = [sum(abs(j) for j in r) for r in A]
+        if all(2 * abs(A[i][i]) > m[i] for i in range(n)):
+                return 0
+        m = [sum(abs(x[i]) for x in A) for i in range(len(A[0]))]
+        return 1 if all(2 * abs(A[j][j]) > m[j] for j in range(n)) else -1
 
 
 # chuẩn vc của ma trận
 def chuanvc(a):
-    a1 = []
-    for r in a:
-        m = (sum(abs(i) for i in r))
-        a1.append(m)
-    c = max(i for i in a1)
-    return c
+        a1 = [(sum(abs(i) for i in r)) for r in a]
+        return max(a1)
 
 
 # chuẩn 1 của ma trận
 def chuan1(a):
-    a1 = [sum([abs(x[i]) for x in a]) for i in range(len(a[0]))]
-    m = max(abs(i) for i in a1)
-    return m
+        a1 = [sum(abs(x[i]) for x in a) for i in range(len(a[0]))]
+        return max(abs(i) for i in a1)
 
 
 # xác định loại chuẩn ma trận
 def chuan(a):
-    if kt(A) == 0:
-        return chuanvc(a)
-    else:
+        if kt(A) == 0:
+                return chuanvc(a)
         if kt(A) == 1:
             return chuan1(a)
         else:
@@ -84,10 +71,7 @@ def chuan_vecto(v):
 
 # Hiệu hai vecto
 def sub(x, y):
-    m = []
-    for i in range(len(x)-2):
-        m.append((x[i] - y[i]))
-    return m
+        return [x[i] - y[i] for i in range(len(x)-2)]
 
 
 # Gói C:
@@ -138,43 +122,38 @@ def lap_don(B, d, e):
 
 
 def kiemtra(sol):
-    m = []
-    t = []
-    for r in A:
-        p = sum(sol[i] * r[i] for i in range(n))
-        m.append(p)
-    for i in range(n):
-        t.append(m[i] - b[i])
-    return t
+        m = []
+        m.extend(sum(sol[i] * r[i] for i in range(n)) for r in A)
+        return [m[i] - b[i] for i in range(n)]
 
 
 # main
 # Bước 1: Kiểm tra A
 def main():
-    if kt(A) == -1:
-        print("Ma trận A không phải ma trận chéo trội.")
-    else:
-        if kt(A) == 0:
-            print("A là ma trận chéo trội hàng")
-            xacdinh_d()
-            xacdinh_b()
-            eps = e * (1 - chuan(B)) / (chuan(B))
-            print("chuan(B) = ", chuan(B))
-        if kt(A) == 1:
-            print("A là ma trận chéo trội cột")
-            xacdinh_d()
-            xacdinh_b()
-            chuanT = max(abs(1 / A[i][i]) for i in range(n))
-            chuanD = max(abs(A[i][i]) for i in range(n))
-            chuan_B1 = max([sum([abs(x[j] / A[j][j]) for x in A]) for j in range(n)]) - 1
-            eps = e * (1 - chuan_B1) / (chuan_B1 * chuanT * chuanD)
-            print("chuan(B1) = ", chuan_B1)
-        # Bước 2: lặp đơn
-        nghiem = lap_don(B, d, eps)
+        if kt(A) == -1:
+                print("Ma trận A không phải ma trận chéo trội.")
+        else:
+                if kt(A) == 0:
+                    print("A là ma trận chéo trội hàng")
+                    xacdinh_d()
+                    xacdinh_b()
+                    eps = e * (1 - chuan(B)) / (chuan(B))
+                    print("chuan(B) = ", chuan(B))
+                if kt(A) == 1:
+                        print("A là ma trận chéo trội cột")
+                        xacdinh_d()
+                        xacdinh_b()
+                        chuanT = max(abs(1 / A[i][i]) for i in range(n))
+                        chuanD = max(abs(A[i][i]) for i in range(n))
+                        chuan_B1 = max(sum(abs(x[j] / A[j][j]) for x in A) for j in range(n)) - 1
+                        eps = e * (1 - chuan_B1) / (chuan_B1 * chuanT * chuanD)
+                        print("chuan(B1) = ", chuan_B1)
+                # Bước 2: lặp đơn
+                nghiem = lap_don(B, d, eps)
 
-        # Kiểm tra tính đúng đắn của thuật toán
-        print("kiểm tra tính đúng đắn của thuật toán: ")
-        print("Ax* - b = ", kiemtra(nghiem))
+                # Kiểm tra tính đúng đắn của thuật toán
+                print("kiểm tra tính đúng đắn của thuật toán: ")
+                print("Ax* - b = ", kiemtra(nghiem))
 
 
 if __name__ == '__main__':

@@ -20,13 +20,13 @@ def gauss1horner(x, y, value):
     # đưa các giá trị sai phân sẽ chọn vào một list
     list_sai_phan = []
 
+    # print("Số mốc lẻ")
+    poly = [0]  # phần tích đầu tiên là bậc 0 với giá trị là 0
+    fact = 1
     # áp dụng công thức
     if (n % 2 == 1):
-        # print("Số mốc lẻ")
-        poly = [0]  # phần tích đầu tiên là bậc 0 với giá trị là 0
-        ans = [table[0][int(n / 2)]]  # biến kết quả ans lần lượt là các hệ số của đa thức nội suy
-        fact = 1
-        list_sai_phan.append(table[0][int(n / 2)])
+        ans = [table[0][n // 2]]
+        list_sai_phan.append(table[0][n // 2])
         for i in range(1, n):
             fact = fact * i
             poly = mulHorner(poly, i, 1)
@@ -34,12 +34,9 @@ def gauss1horner(x, y, value):
             list_sai_phan.append(table[i][int((n - i) / 2)])  # lấy giá trị sai phân
 
         # Tính giá trị đa thức tại value
-        result = horner(ans, (value - x[int(n / 2)]) / h)
+        result = horner(ans, (value - x[n // 2]) / h)
     else:
-        # print("Số mốc chẵn")
-        poly = [0]
         ans = [table[0][int((n - 1) / 2)]]
-        fact = 1
         list_sai_phan.append(table[0][int((n - 1) / 2)])
         for i in range(1, n):
             fact = fact * i
@@ -93,15 +90,12 @@ def main():
     predict = []
     # đổi sang biến t
     t = []
-    if (n % 2 == 1):
-        for ele_x in x:
-            ele_t = (ele_x - x[int(n / 2)]) / (x[1] - x[0])
-            t.append(ele_t)
-    else:
-        for ele_x in x:
+    for ele_x in x:
+        if (n % 2 == 1):
+            ele_t = (ele_x - x[n // 2]) / (x[1] - x[0])
+        else:
             ele_t = (ele_x - x[int((n - 1) / 2)]) / (x[1] - x[0])
-            t.append(ele_t)
-
+        t.append(ele_t)
     for ele_t in t:
         ele_y = horner(ans[0], ele_t)
         predict.append(ele_y)
@@ -120,14 +114,12 @@ def main():
     x_plot = np.linspace(min(x), max(x), num=100)
     # đổi biến x sang biến t:
     t_plot = []
-    if (n % 2 == 1):
-        for ele_x in x_plot:
-            ele_t = (ele_x - x[int(n / 2)]) / (x[1] - x[0])
-            t_plot.append(ele_t)
-    else:
-        for ele_x in x_plot:
+    for ele_x in x_plot:
+        if (n % 2 == 1):
+            ele_t = (ele_x - x[n // 2]) / (x[1] - x[0])
+        else:
             ele_t = (ele_x - x[int((n - 1) / 2)]) / (x[1] - x[0])
-            t_plot.append(ele_t)
+        t_plot.append(ele_t)
     # tính y_plot tương ứng với t_plot
     y_plot = []
     for t in t_plot:

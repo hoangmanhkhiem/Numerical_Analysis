@@ -35,12 +35,8 @@ def trpezoidal_intervals():
 def simpson(A):
     """ Tính gần đúng tích phân xác định bằng công thức Simpson """
     simp = h/3*(A[0]+A[n])
-    simp_odd = 0
-    simp_even = 0        
-    for i in range(1, n, 2):
-        simp_odd += A[i]
-    for i in range(2, n, 2):
-        simp_even += A[i]
+    simp_odd = sum(A[i] for i in range(1, n, 2))
+    simp_even = sum(A[i] for i in range(2, n, 2))
     simp = simp + h/3*4*simp_odd + h/3*2*simp_even
     print("Tích phân bằng công thức Simpson         :", simp)
 
@@ -92,8 +88,12 @@ def cotez_coef(i) -> float:
     # D là tích các đa thức (t-j), j từ 0 đến n, nhưng để tiết kiệm thời gian, tính 
     # nó một lần duy nhất ở dưới.
     X = devide_horner(D, i)
-    h = (1/n)*((-1)**(n-i))/(math.factorial(i)*math.factorial(n-i))*poly_integral(X, 0, n)
-    return h
+    return (
+        (1 / n)
+        * ((-1) ** (n - i))
+        / (math.factorial(i) * math.factorial(n - i))
+        * poly_integral(X, 0, n)
+    )
     
 def newton_cotez() -> float:
     """ Tính gần đúng tích phân xác định bằng công thức Newton - Cotez """
@@ -123,11 +123,7 @@ def max(fx, i):
     g   = Derivative(fx,(x, i), evaluate=True)
     m1  = abs(maximum(g, x, Interval(a, b)))
     m2  = abs(minimum(g, x, Interval(a, b)))
-    if m1 > m2:
-        m = m1
-    else:
-        m = m2
-    return m
+    return max(m1, m2)
 
 
 def main():
@@ -141,30 +137,23 @@ def main():
     if q == 1:
         n       = int(input('Nhập số khoảng chia n: '))
         h       = (b-a)/n
-    
+
         D       = [1]
         for i in range(0, n+1):
             multiply_horner(D, i)                           # Tích các (t-j), j từ 0 đến n
-        
+
         A       = [f.subs(x,a+i*h) for i in range(n+1)]     # Tạo mảng lưu giá trị hàm tại các mốc nội suy
 
+        trapezoidal(A)
+        trapezoidal_error()
+        print()
         if n % 2 == 0:
-            trapezoidal(A)
-            trapezoidal_error()
-            print()
             simpson(A)
             simpson_error()
             print()
-            newton_cotez()
-            newton_cotez_error()
-        else:
-            trapezoidal(A)
-            trapezoidal_error()
-            print()
-            newton_cotez()
-            newton_cotez_error()
-
-    if q == 2:
+        newton_cotez()
+        newton_cotez_error()
+    elif q == 2:
         eps     = float(input('Nhập epsilon: '))
         trpezoidal_intervals()
         simpson_intervals()

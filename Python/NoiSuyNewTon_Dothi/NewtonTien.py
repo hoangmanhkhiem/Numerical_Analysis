@@ -15,7 +15,7 @@ np.set_printoptions(suppress=True, linewidth=np.inf, precision=5) #chỉnh số 
 def Input():  #giả thiết input được sắp xếp cách đều tăng dần
     x, y = [], []
     with open('input.txt','r+') as f: # đọc file input
-        for line in f.readlines(): # duyệt từng hàng trong file
+        for line in f:
             if float(line.split()[0]) not in x:
                 x.append(float(line.split()[0]))
                 y.append(float(line.split()[1]))
@@ -107,7 +107,7 @@ def main():
     x, y = Input()
     x0 = float(input("Mời nhập giá trị cần tính: "))
     num = int(input(f"Chọn số lượng mốc nội suy tính (<= {len(x)}): "))
-    
+
     h = x[1] - x[0]
 
     x1, y1 = pickPoint(x0, num, x, y) # chọn deg điểm gần x0 nhất
@@ -126,27 +126,27 @@ def main():
 
     value = fx0(f, x0, x1)
     print("Giá trị cần tính tại", x0, " là:", value)
-    
+
     plot(x1, y1, f)
-    
+
     k = int(input("Nhập số lượng thêm mốc nội suy: "))
     if k <= 0:
         sys.exit()
-    for i in range(k):
+    for _ in range(k):
         xt, yt = input("Nhập mốc và giá trị nội suy: ").split()
         if float(xt) not in x1 and abs(float(xt) - x1[n] - h) < 1e-6:
             n += 1
             x1.append(float(xt))
             y1.append(float(yt))
             f, BSP, BTT = add_Newton(BSP, BTT, f, x1, y1, n)
-    
+
     print("Hệ số của đa thức nội suy Newton: (bắt đầu từ hệ số tự do)")
     print(f)
     print(f"t = (x - {x1[0]})/{abs(round(h, 6))}")
 
     value = fx0(f, x0, x1)
     print("Giá trị cần tính tại", x0, " là:", value)
-    
+
     plot(x1, y1, f)
 
 if __name__=='__main__':

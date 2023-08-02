@@ -10,43 +10,31 @@ import pandas as pd
 
 
 def doc_input(ten_file):
-    # tra ve gia tri cua x va y tu file input.txt
-    # doc file input.txt
-    inp = open(ten_file, "r")
-    # doc du lieu cua x va y
-    x = inp.readline()
-    y = inp.readline()
-    # xu ly du lieu cua x va y
-    x = x.strip().split()
-    x = np.array(x, dtype=float)
-    if (y == ""):
-        y = f(x)
+    with open(ten_file, "r") as inp:
+        # doc du lieu cua x va y
+        x = inp.readline()
+        y = inp.readline()
+        # xu ly du lieu cua x va y
+        x = x.strip().split()
+        x = np.array(x, dtype=float)
+        y = f(x) if (y == "") else y.strip().split()
         y = np.array(y, dtype=float)
-        inp.close()
-    else:
-        y = y.strip().split()
-        y = np.array(y, dtype=float)
-        inp.close()
     return x, y
 
 
 def hoocnerChia(a, value):
     b = [a[0]]
-    for i in range(1, len(a)):
-        b.append(a[i] + b[i - 1] * value)
+    b.extend(a[i] + b[i - 1] * value for i in range(1, len(a)))
     return b
 
 
 def hoocne_product(x):
-    a = []
     Li = [np.array([1])]
-    a.append(np.array([1, 0]))
+    a = [np.array([1, 0])]
     for i in x:
         b = a[-1]
-        c = []
-        c.append(1)
-        for j in range(len(b) - 1):
-            c.append(b[j + 1] - b[j] * i)
+        c = [1]
+        c.extend(b[j + 1] - b[j] * i for j in range(len(b) - 1))
         c.append(0)
         a.append(np.array(c))
         Li.append(np.delete(a[-1], -1))
@@ -54,10 +42,8 @@ def hoocne_product(x):
 
 
 def hoocne_quatient(a, x):
-    y = []
-    y.append(a[0])
-    for i in range(len(a) - 1):
-        y.append(y[i] * x + a[i + 1])
+    y = [a[0]]
+    y.extend(y[i] * x + a[i + 1] for i in range(len(a) - 1))
     b = np.array(y[:-1])
     b_0 = np.array(y[-1])
     return b, b_0
@@ -69,8 +55,7 @@ def nsNewton_bat_ki(x, y):
     Li = hoocne_product(x)
     for i in range(x.shape[0]):
         z = [y[i]]
-        for j in range(i):
-            z.append((z[j] - Z[i - 1][j]) / (x[i] - x[i - j - 1]))
+        z.extend((z[j] - Z[i - 1][j]) / (x[i] - x[i - j - 1]) for j in range(i))
         Z.append(np.array(z))
         Fi = Z[i][i]
         if i == 0:
